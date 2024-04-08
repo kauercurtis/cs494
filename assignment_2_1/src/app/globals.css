@@ -1,0 +1,10 @@
+/*
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+:root {
+  --width:250px;
+  --height:calc(var(--width) / 2);
+}
