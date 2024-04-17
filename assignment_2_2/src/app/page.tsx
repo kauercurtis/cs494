@@ -1,27 +1,47 @@
+import {TableContainer } from "@mui/material";
 
-import { Container, List, ListItem, TableContainer } from "@mui/material";
+import MyTable from '../components/myTable';
 
-import MyTable from "./components/myTable";
+import { promises as fs } from "fs";
 
-//To Do: Encapuslate the data into its own file. JSON file comes to mind. 
+export default async function Home() {
 
-export default function Home() {
-  const columns: string [] = ["Game Title", "Developer", "Year", "Genre", "Platform"];
+  const fileData = await fs.readFile(process.cwd() + "/data/star_data.json", "utf8") 
+
+  const jsonData: {name: string,
+                    distance_from_earth_ly: number,
+                    size: string, 
+                    mass: string, 
+                    temperature: string, 
+                    type: string 
+                    } = JSON.parse(fileData);
+
+  const headers: string[] = ["name", "distance from earth ly", "size", "mass", "temperature", "type"];
   
-  const gameData: string[][] = [
-    ["The Legend of Zelda: Breath of the Wild", "Nintendo", "2017", "Adventure", "Nintendo Switch"], 
-    ["Super Metroid", "Nintendo", "1994", "Science-Fiction", "Super Nintendo Entertainment System"], 
-    ["Portal 2", "Valve", "2011", "Puzzle", "PC, Playstation 3, Xbox 360"], 
-    ["Tetris", "Alexey Pajitnov", "1984", "Puzzle", "Varying Platforms"], 
-    ["Grand Theft Auto V", "Rockstar North", "2013", "Open World", "Varying Platforms"]
-  ];
-    
-  return (
-      <main>
-        <TableContainer>
-          <MyTable columns={columns} gameData={gameData}/>
-        </TableContainer>
-      </main>
-    );
-  }
+  // TODO Convert the data to objects instead.
+  // {title: string, year: string, director: string, genre: string[], score: string}
+  // const data: string[][] = [
+  //   ["The Dark Knight", "2008", "Christopher Nolan", "Action, Crime, Drama", "94%"],
+  //   ["The Shawshank Redemption", "1994", "Frank Darabont", "Drama", "98%"],
+  //   ["Inception", "2010", "Christopher Nolan", "Action, Adventure, Sci-Fi", "91%"],
+  //   ["Pulp Fiction", "1994", "Quentin Tarantino", "Crime, Drama", "96%"],
+  //   ["Forrest Gump", "1994", "Robert Zemeckis", "Drama, Romance", "95%"]
+  // ];
 
+  // const data: {name: string, distance_from_earth_ly: string, size: string, mass: string[], temperature: string, type: string}[] = [];
+
+  // let foo: string = "";
+
+  // jsonData.forEach(data.push({name: foo.name, distance_from_earth_ly: foo.distance_from_earth_ly, size: foo.size, mass: foo.mass, temperature: foo.temperature, type: foo.type}));
+
+  // data.push({title: "The Dark Knight", year: "2008", director: "Christopher Nolan", genre: ["Action", "Crime", "Drama"], score: "94%"});
+
+  
+  return (
+    <main>
+      <TableContainer>
+        <MyTable headers={headers} data={jsonData} />
+      </TableContainer>
+    </main>
+  );
+}
