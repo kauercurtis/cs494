@@ -1,47 +1,77 @@
-import pokemon from '../assets/data/gen_1_pokedex.json'; 
+'use client';
+import pokemon from '../assets/data/gen_1_pokedex.json';
 
-function header(){
-  return(
-    <h1>Generation 1 Pokedex</h1>
-  );
-}
+import { 
+  TableContainer, Table, TableHead, 
+  TableBody, TableRow, TableCell, 
+  Box,
+  tableRowClasses,
+} from "@mui/material";
 
-function tableHeader(){
-  return(
-    <table>
-      <thead>
-        <tr>
-          <th>Number</th>
-          <th>Pic</th>
-          <th>Name</th>
-          <th>Types</th>
-          <th>Abilities</th>
-        </tr>
-      </thead>
-    </table>
-  );
-}
+import { styled } from "@mui/material/styles";
+import { tableCellClasses } from "@mui/material/TableCell";
 
-export function list(){
-  const tableRows = pokemon.map(poke =>
-    <tr>
-      <td>{poke.number}</td>
-      <td><img src= {poke.ThumbnailImage}></img></td>
-      <td>{poke.name}</td>
-      <td>{poke.type.join(', ')}</td>
-      <td>{poke.abilities.join(', ')}</td>
-    </tr>
-  );
-  return tableRows;
-}
+const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`] : {
+    backgroundColor: "#808080",
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  [`&.${tableCellClasses.body}`] : {
+    backgroundColor: "#D3D3D3", 
+    textAlign: "center",
+    height: "75px",
+    borderBottom: "3px solid black"  
+  }
+}));
 
+const StyledTableRow = styled(TableRow)(() => ({
+
+}));
 
 export default function Home() {
-  return (
+  
+  function header(){
+    return(
+      <h1>Generation 1 Pokedex</h1>
+    );
+  }
+
+  function tableHeader(){
+    return(
+      <StyledTableRow>
+        <StyledTableCell>Number</StyledTableCell>
+        <StyledTableCell>Pic</StyledTableCell>
+        <StyledTableCell>Name</StyledTableCell>
+        <StyledTableCell>Types</StyledTableCell>
+        <StyledTableCell>Abilities</StyledTableCell>
+      </StyledTableRow>
+    );
+  }
+
+  function tableRows(){
+    const tableRows = pokemon.map(poke =>
+
+      <StyledTableRow>
+        <StyledTableCell>{poke.number}</StyledTableCell>
+        <StyledTableCell><img src={poke.ThumbnailImage}/></StyledTableCell>
+        <StyledTableCell>{poke.name}</StyledTableCell>
+        <StyledTableCell>{poke.type.join(', ')}</StyledTableCell>
+        <StyledTableCell>{poke.abilities.join(', ')}</StyledTableCell>
+      </StyledTableRow>
+    );
+    return tableRows;
+  }
+  
+  return(
     <main>
       {header()}
-      {tableHeader()}
-      {list()}
+      <TableContainer>
+        <Table>
+          <TableHead>{tableHeader()}</TableHead>
+          <TableBody>{tableRows()}</TableBody>
+        </Table>
+      </TableContainer>
     </main>
   );
 }
