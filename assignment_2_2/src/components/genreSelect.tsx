@@ -3,6 +3,7 @@
 import { Container, Box, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import { useState } from 'react';
 
+
 export default function GenreSelect(props: {genres: string[], setFilterGenre: Function}){
     return(
         
