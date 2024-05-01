@@ -12,7 +12,7 @@ export default function LanguageSelect(props: {languages: string[]}){
                 id="language-select"
                 label="Language"
                 // value={ language } 
-                // onChange={ handleChange }
+                // onChange={ handleLanguageChange }
         >
                 {
                     props.languages.map((language: string)=>(
