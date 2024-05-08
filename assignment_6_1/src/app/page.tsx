@@ -2,48 +2,46 @@
 
 import { useState, useEffect, ChangeEvent } from 'react';
 import { Button, TextField, Box, FormControl, Typography } from '@mui/material';
+import { Pokemon } from "@/types/pokemon";
+
+import { dataset_dev } from 'svelte/internal';
 
 export default function Home() {
 
-  const [count, setCount] = useState
-  (0);
+  // useEffect(() => {
+  //  console.log(pokemon)
+ // })
 
-  function handleCountChange(event: ChangeEvent<HTMLInputElement>){
-    setCount(Number(event.target.value));
-}
-
-  const [message, setmessage] = useState<string[]>([]);
-  function handleClick(){
-    fetch(`/api/facts?count=${count}`)
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
+  useEffect(() => {
+    fetch("/api/pokemon")
     .then(response => response.json())
-    .then(json => setmessage(json.rFacts))
+    .then(json => setPokemon(json.pokemon))
     .catch(error => console.error(error))
-  }
+  });
 
   return (
     <main>
-      <TextField
-        id="counter" 
-        label="enter count" 
-        value={count} 
-        onChange={handleCountChange} type="number"/>
-      <Button variant="contained" onClick={handleClick}>Get Random Fact</Button>
-      <div>
-        {
-          message.map((fact, i) => (
-            <Typography variant="h4" key={i}>
-              {fact}
-            </Typography>
-          ))
-        }
-      </div>
-      <TextField
-        id="counter" 
-        label="enter count" 
-        value={count} 
-        onChange={handleCountChange} type="number"/>
-
       
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            pokemon.map((data: Pokemon, index: number) =>(
+              <tr key= {index}>
+                <td>
+                  { data.name }    
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    
     </main>
   );
 }
