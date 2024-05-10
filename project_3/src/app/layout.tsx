@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Assignment 5_1",
+  title: "Project 3",
   description: "Curtis Kauer, Oregon State University",
 };
 
