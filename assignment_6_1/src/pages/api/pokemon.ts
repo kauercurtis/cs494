@@ -1,21 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next"
 
-import { Pokemon } from "../../types/pokemon";
+import { Pokemon } from '../../types/Pokemon';
 
-export default async function handleRequest(
+export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<{pokemon: Pokemon[]}>
-){
+  ) {
+
     const pokemonArray: Pokemon[] = [];
     const r = await fetch("https://pokeapi.co/api/v2/pokemon");
+    
+    
     const jsonData = await r.json();
-    console.log(jsonData);
-
-    for (let index = 0; index < jsonData.results.length; index++){
-        pokemonArray.push(jsonData.results[index] as Pokemon);
+    for (let i = 0; i < jsonData.results.length; i++){
+      pokemonArray.push(jsonData.results[i] as Pokemon);
     }
-    console.log(pokemonArray);
-    console.log("Hello world");
-    res.status(200).json({pokemon: pokemonArray})
 
-}
+
+    res.status(200).json({ pokemon: pokemonArray })
+  }    

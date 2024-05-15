@@ -2,7 +2,11 @@ import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Butto
 import { ChangeEvent } from 'react'
 
 export default function MyTable(props: {entries: {task: string, urgency: number}[], deleteEntry: Function}){
-    
+    const hobbies: string[] = ["Hiking", "Gaming"];
+    console.log(`My hobbies are ${hobbies[0]} and ${hobbies[1]}.`);
+    console.log("My hobbies are " + hobbies[0] + " and " + hobbies[1] + ".");
+    console.log(`My hobbies are ${hobbies.join(" and ")}.`);
+    console.log(`My hobbies are ${hobbies}.`);
     props.entries.sort((a, b) => b.urgency - a.urgency);
     return(
         <TableContainer>
