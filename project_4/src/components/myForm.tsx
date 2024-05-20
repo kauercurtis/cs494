@@ -11,9 +11,6 @@ import { Button,
       Container
  } from "@mui/material";
 
-// import { Pokemon } from '../types/Pokemon';
-// import { PokemonDetail } from '../types/PokemonDetail';
-
 export default function MyForm(props: {genres: string[], setSelectedGenreUrl: Function}){
 
   const [selectedGenre, setSelectedGenre] = useState<string>(props.genres[0]);

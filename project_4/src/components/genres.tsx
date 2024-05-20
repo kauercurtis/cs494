@@ -8,9 +8,6 @@ import {
       SelectChangeEvent, 
       Container
  } from "@mui/material";
-
- import { Pokemon } from '../types/Pokemon';
- import { PokemonDetail } from '../types/PokemonDetail';
  
 import { Genre } from '../app/genre'
 

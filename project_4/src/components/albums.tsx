@@ -14,8 +14,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
-import { PokemonDetail } from '../types/PokemonDetail';
-
 import { Tag } from '../app/tags';
 
 export default function MyCard(props: {albumDetails: Tag[]}){
