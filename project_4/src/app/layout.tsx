@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Curtis Kauer",
-  description: "In-class Assignment 7-2, Oregon State University",
+  title: "Project 4",
+  description: "Curtis Kauer, Oregon State University",
 };
 
 export default function RootLayout({
