@@ -27,23 +27,23 @@ export default function MyCard(props: {albumDetails: Tag[]}){
             
             {
                 props.albumDetails.map((album) => 
-                    <Card sx={{ display: 'flex', width: 'fit-content'}}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', width: 'fit-content' }}>
-                            <CardContent sx={{ flex: '1 0 auto' }}>
-                            <Typography component="div" variant="h5">
-                                { album.album }
-                            </Typography>
-                            <Typography variant="subtitle1" color="text.secondary" component="div">
-                                Artist: { album.artist }
-                            </Typography>
-                            </CardContent>
-                            </Box> 
-                            <CardMedia
-                                component="img"
-                                sx={{ width: '151' }}
-                                image={ album.url }
-                            />
-                    </Card>
+                  <Card sx={{ height: 'fit-content', width: 'fit-content', display: 'flex', flexDirection: 'row'}}>
+                    <CardMedia
+                        sx={{ width: 200, height: 151, p: 2 }}
+                        image={ album.url }
+                        title="album_image"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom varient="h5" componenent="div">
+
+                            { album.album }
+                            
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Artist: {album.artist}
+                        </Typography>
+                    </CardContent>
+                  </Card>  
             )}
             
         </Container>
