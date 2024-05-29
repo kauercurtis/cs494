@@ -1,54 +1,65 @@
+
 'use client';
+import {
+    AppBar, 
+    Box, 
+    Toolbar,  
+    Container,
+    Button, 
+ } from "@mui/material";
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-
-import { useRouter } from 'next/navigation';
+ import { useRouter } from 'next/navigation';
+ import Link from 'next/link';
+ 
 
 export default function NavBar(){
-
     const router = useRouter();
+    //const sections: string[] = ["Home", "Dogs", "Cats", "Favorites"];
+    const links = [
+        {name: "Home", url: "/"},
+        {name: "Dogs", url: "/dogs"},
+        {name: "Cats", url: "/cats"},
+        {name: "Favorites", url: "/favorites"}
+    ];
 
-    const sections: string[] = ["Home", "Dogs", "Cats", "Favorites"];
+    // Before changing to Link:
+    // <Button onClick={()=>{handleSectionClick(section)}}>{section}</Button>
 
-    const handleSectionClick = (section: string) => {
-        if(section == "Home"){
-            router.push("/");
-        }
-        else if(section == "Dogs"){
-            router.push("/dogs");
-        }
-        else if(section == "Cats"){
-            router.push("/cats");
-        }
-        else if(section == "Favorites"){
-            router.push("/favorites");
-        }
-    };
+    // const handleSectionClick = (section: string) => {
+    //     if (section == "Home"){
+    //         router.push("/");
+    //     }
+    //     else if (section == "Dogs"){
+    //         router.push("/dogs");
+    //     }
+    //     else if (section == "Cats"){
+    //         router.push("/cats");
+    //     }
+    //     else if (section == "Favorites"){
+    //         router.push("/favorites");
+    //     }
+    // };
+    
+    return (
+        <header>
+            <AppBar position="static">
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
+                        {links.map((link, i) => (
+                        <Link key={i} href={link.url} passHref>
+                            <Button
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                {link.name}
+                            </Button>
+                        </Link>
+                        ))}
+                    </Box>
 
-    return(
-        <AppBar position="static">
-            <Container>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex' , md: 'flex' } }}>
-            {sections.map((section) => (
-                
-             
-                <Typography>
-                    <Button key={section}
-                    onClick={()=>handleSectionClick(section)}
-                    sx={{ my: 2, color: 'white', display: 'block' }}>
-                       { section }
-                    </Button>
-                </Typography>
-               
-            ))}
-            </Box>
-            </Container>
-        </AppBar>
-        //<header>My NavBar</header>
-    );
-
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        </header>
+    )
 }

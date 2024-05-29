@@ -1,9 +1,5 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Assignment 8 1",
-  description: "Curtis Kauer, Oregon State University",
-};
+"use client";
+import { AnimalsContextProvider } from "@/context/animalsContext";
 
 export default function RootLayout({
   children,
@@ -11,8 +7,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <AnimalsContextProvider>
     <html lang="en">
       <body>{children}</body>
     </html>
+    </AnimalsContextProvider>
   );
 }

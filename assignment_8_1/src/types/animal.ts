@@ -1,8 +1,7 @@
 export type Animal = {
-
     name: string,
-    image: string,
-    type: string
-    gender: string
-
+    gender: string,
+    type: string,
+    url: string,
+    favorited: boolean
 }
